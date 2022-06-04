@@ -1,5 +1,5 @@
 {
-  "trailingComma": "none",
+  "trailingComma": "all",
   "arrowParens": "always",
   "bracketSameLine": false,
   "bracketSpacing": true,
@@ -11,7 +11,7 @@
   "proseWrap": "preserve",
   "quoteProps": "as-needed",
   "requirePragma": false,
-  "semi": true,
+  "semi": false,
   "singleQuote": true,
   "tabWidth": 2,
   "useTabs": false,

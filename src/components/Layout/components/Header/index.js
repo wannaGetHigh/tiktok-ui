@@ -25,6 +25,9 @@ import styles from './Header.module.scss'
 import AccountItem from '~/components/AccountItem'
 import Button from '~/components/Button'
 import Menu from '~/components/Popper/Menu'
+import { Link } from 'react-router-dom'
+import { InboxIcon, MessageIcon } from '~/components/Icons'
+import Image from '~/components/Image'
 
 const cx = classNames.bind(styles)
 
@@ -101,7 +104,9 @@ const Header = () => {
   return (
     <header className={cx('wrapper')}>
       <div className={cx('inner')}>
-        <img src={images.logo} alt="Tiktok" />
+        <Link to="/">
+          <Image src={images.logo} alt="Tiktok" />
+        </Link>
         <HeadlessTippy
           visible={searchResult.length > 0}
           interactive={true}
@@ -130,19 +135,21 @@ const Header = () => {
         </HeadlessTippy>
 
         <div className={cx('actions')}>
-          <Button outline leftIcon={<FontAwesomeIcon icon={faPlus} />}>
-            Upload
-          </Button>
+          <Link to="/upload">
+            <Button outline leftIcon={<FontAwesomeIcon icon={faPlus} to="/upload" />}>
+              Upload
+            </Button>
+          </Link>
           {currentUser ? (
             <>
               <Tippy content="Message" placement="bottom">
                 <button className={cx('action-btn')}>
-                  <img src={images.message} alt="Message" />
+                  <MessageIcon width="2.6rem" height="2.6rem" />
                 </button>
               </Tippy>
               <Tippy content="Inbox" placement="bottom">
                 <button className={cx('action-btn')}>
-                  <img src={images.inbox} alt="Inbox" />
+                  <InboxIcon />
                 </button>
               </Tippy>
             </>
@@ -151,8 +158,8 @@ const Header = () => {
           )}
           <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
             {currentUser ? (
-              <img
-                src="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/1674599926121478~c5_100x100.jpeg?x-expires=1654506000&x-signature=sMhzRM5i3mNoTuxhmJimgtTdIoM%3D"
+              <Image
+                src="httgdfgdfps://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/1674599926121478~c5_100x100.jpeg?x-expires=1654506000&x-signature=sMhzRM5i3mNoTuxhmJimgtTdIoM%3D"
                 className={cx('user-avatar')}
                 alt="Nguyen Van A"
               />

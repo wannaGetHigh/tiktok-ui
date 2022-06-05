@@ -1,14 +1,15 @@
-import classNames from 'classnames/bind';
-import styles from './AccountItem.module.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import classNames from 'classnames/bind'
+import styles from './AccountItem.module.scss'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
+import Image from '~/components/Image'
 
-const cx = classNames.bind(styles);
+const cx = classNames.bind(styles)
 
 const AccountItem = () => {
   return (
     <div className={cx('wrapper')}>
-      <img
+      <Image
         className={cx('avatar')}
         src="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/1674599926121478~c5_100x100.jpeg?x-expires=1654506000&x-signature=sMhzRM5i3mNoTuxhmJimgtTdIoM%3D"
         alt="Avater user"
@@ -21,6 +22,6 @@ const AccountItem = () => {
         <span className={cx('username')}>nguyenvana</span>
       </div>
     </div>
-  );
-};
-export default AccountItem;
+  )
+}
+export default AccountItem

@@ -1,20 +1,20 @@
-import Home from '~/pages/Home';
-import Following from '~/pages/Following';
-import Profile from '~/pages/Profile';
-import Upload from '~/pages/Upload';
-import Search from '~/pages/Search';
+import Home from '~/pages/Home'
+import Following from '~/pages/Following'
+import Profile from '~/pages/Profile'
+import Upload from '~/pages/Upload'
+import Search from '~/pages/Search'
 
-import { HeaderOnly } from '~/components/Layout';
-import { Fragment } from 'react';
+import { HeaderOnly } from '~/components/Layout'
+import { Fragment } from 'react'
 
 const publicRoutes = [
   { path: '/', component: Home },
   { path: '/following', component: Following },
-  { path: '/profile', component: Profile },
+  { path: '/@:nickname', component: Profile },
   { path: '/upload', component: Upload, layout: HeaderOnly },
-  { path: '/search', component: Search, layout: Fragment }
-];
+  { path: '/search', component: Search, layout: Fragment },
+]
 
-const privateRoutes = [];
+const privateRoutes = []
 
-export { publicRoutes, privateRoutes };
+export { publicRoutes, privateRoutes }

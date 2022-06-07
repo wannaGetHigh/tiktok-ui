@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import styles from './Menu.module.scss'
 import classNames from 'classnames/bind'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -15,4 +16,10 @@ const Header = ({ title, onBack }) => {
     </header>
   )
 }
+
+Header.prototype = {
+  title: PropTypes.string.isRequired,
+  onBack: PropTypes.string.isRequired,
+}
+
 export default Header

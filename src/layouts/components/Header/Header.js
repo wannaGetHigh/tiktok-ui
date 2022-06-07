@@ -22,6 +22,7 @@ import { Link } from 'react-router-dom'
 import { InboxIcon, MessageIcon } from '~/components/Icons'
 import Image from '~/components/Image'
 import Search from '../Search'
+import config from '~/config'
 
 const cx = classNames.bind(styles)
 
@@ -31,10 +32,70 @@ const Header = () => {
   const MENU_ITEMS = [
     {
       icon: <FontAwesomeIcon icon={faEarthAsia} />,
-      title: 'English',
+      title: 'Language',
       children: {
         title: 'Language',
         data: [
+          {
+            code: 'en',
+            title: 'English',
+          },
+          {
+            code: 'es',
+            title: 'Español',
+          },
+          {
+            code: 'vi',
+            title: 'Tiếng Việt',
+          },
+          {
+            code: 'en',
+            title: 'English',
+          },
+          {
+            code: 'es',
+            title: 'Español',
+          },
+          {
+            code: 'vi',
+            title: 'Tiếng Việt',
+          },
+          {
+            code: 'en',
+            title: 'English',
+          },
+          {
+            code: 'es',
+            title: 'Español',
+          },
+          {
+            code: 'vi',
+            title: 'Tiếng Việt',
+          },
+          {
+            code: 'en',
+            title: 'English',
+          },
+          {
+            code: 'es',
+            title: 'Español',
+          },
+          {
+            code: 'vi',
+            title: 'Tiếng Việt',
+          },
+          {
+            code: 'en',
+            title: 'English',
+          },
+          {
+            code: 'es',
+            title: 'Español',
+          },
+          {
+            code: 'vi',
+            title: 'Tiếng Việt',
+          },
           {
             code: 'en',
             title: 'English',
@@ -65,7 +126,7 @@ const Header = () => {
     {
       icon: <FontAwesomeIcon icon={faUser} />,
       title: 'View profile',
-      to: '/user',
+      to: config.routes.user,
     },
     {
       icon: <FontAwesomeIcon icon={faCoins} />,
@@ -93,14 +154,14 @@ const Header = () => {
   return (
     <header className={cx('wrapper')}>
       <div className={cx('inner')}>
-        <Link to="/">
+        <Link to={config.routes.home} className={cx('logo-link')}>
           <Image src={images.logo} alt="Tiktok" />
         </Link>
 
         <Search />
 
         <div className={cx('actions')}>
-          <Link to="/upload">
+          <Link to={config.routes.upload}>
             <Button outline leftIcon={<FontAwesomeIcon icon={faPlus} to="/upload" />}>
               Upload
             </Button>
@@ -124,11 +185,7 @@ const Header = () => {
           )}
           <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
             {currentUser ? (
-              <Image
-                src="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/1674599926121478~c5_100x100.jpeg?x-expires=1654506000&x-signature=sMhzRM5i3mNoTuxhmJimgtTdIoM%3D"
-                className={cx('user-avatar')}
-                alt="Nguyen Van A"
-              />
+              <Image src={images.avatar} className={cx('user-avatar')} alt="Nguyen Van A" />
             ) : (
               <button className={cx('more-btn')}>
                 <FontAwesomeIcon icon={faEllipsisVertical} />

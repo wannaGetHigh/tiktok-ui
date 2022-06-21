@@ -1,0 +1,79 @@
+// Suggest popper
+div.account-info-containter {
+  padding: 20px;
+  width: 320px;
+
+  .account-info-title {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .account-info-nickname {
+    font-family: ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .check {
+    margin-left: 6px;
+    color: rgb(32, 213, 236);
+  }
+}
+
+.stat-container {
+  margin-top: 8px;
+
+  .stat-desc,
+  .stat-text {
+    margin-right: 8px;
+    font-size: 1.7rem;
+    line-height: 20px;
+    display: inline-block;
+  }
+
+  .stat-desc {
+    font-weight: 700;
+  }
+
+  .stat-text {
+    color: rgba(22, 24, 35, 0.75);
+  }
+}
+
+.account-info-head {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+
+  .avatar {
+    display: flex;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  button {
+    height: fit-content;
+  }
+}
+
+.account-info-bio {
+  font-size: 14px;
+  line-height: 20px;
+  padding-top: 16px;
+  margin-top: 16px;
+  border-top: 1px solid rgba(22, 24, 35, 0.12);
+}
+
+.suggest-title {
+  padding: 0 8px;
+  margin-bottom: 8px;
+  color: rgba(22, 24, 35, 0.75);
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 20px;
+}

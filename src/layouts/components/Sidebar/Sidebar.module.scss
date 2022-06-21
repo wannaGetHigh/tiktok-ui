@@ -1,0 +1,39 @@
+.wrapper {
+  overflow: hidden;
+  overscroll-behavior-y: contain;
+  perspective: 1px;
+  /* transform-style: preserve-3d; */
+  padding-bottom: 28px;
+  perspective-origin: right top;
+  top: 60px;
+  bottom: 0;
+  width: inherit;
+  background: rgba(255, 255, 255, 1);
+  padding: 20px 0 26px 8px;
+  position: fixed;
+  z-index: 9;
+
+  &:hover {
+    overflow-y: scroll;
+  }
+
+  &::-webkit-scrollbar {
+    border-radius: 0;
+    width: 7px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.06);
+  }
+}
+
+.primary {
+  color: var(--primary);
+  fill: var(--primary);
+}
+
+.separate-line {
+  border-bottom: 1px solid rgba(22, 24, 35, 0.12);
+  margin-top: 8px;
+}

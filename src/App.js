@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
 import { publicRoutes } from '~/routes'
 import DefaultLayout from '~/layouts'
 
@@ -22,6 +22,7 @@ function App() {
               />
             )
           })}
+          <Route path="/" element={<Navigate to="/foryou" replace />} />
         </Routes>
       </div>
     </Router>

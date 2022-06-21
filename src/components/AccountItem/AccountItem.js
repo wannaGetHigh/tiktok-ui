@@ -5,26 +5,30 @@ import styles from './AccountItem.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import Image from '~/components/Image'
+import { forwardRef } from 'react'
 
 const cx = classNames.bind(styles)
 
-const AccountItem = ({ data }) => {
+const AccountItem = forwardRef(({ data, options = {} }, ref) => {
+  const { small, hidden } = options
+
   return (
-    <Link to={`/@${data.nickname}`} className={cx('wrapper')}>
-      <Image className={cx('avatar')} src={data.avatar} alt={data.full_name} />
-      <div className={cx('info')}>
-        <h4 className={cx('name')}>
-          <span>{data.full_name}</span>
+    <Link to={`/@${data.nickname}`} className={cx('wrapper')} ref={ref}>
+      <Image className={cx('avatar', { small })} src={data.avatar} alt={data.full_name} />
+      <div className={cx('info', { hidden })}>
+        <h4 className={cx('nickname', { small })}>
+          <span>{data.nickname}</span>
           {data.tick && <FontAwesomeIcon className={cx('check')} icon={faCheckCircle} />}
         </h4>
-        <span className={cx('username')}>{data.nickname}</span>
+        <h3 className={cx('username', { small })}>{data.full_name}</h3>
       </div>
     </Link>
   )
-}
+})
 
 AccountItem.propTypes = {
   data: PropTypes.object.isRequired,
+  options: PropTypes.object,
 }
 
 export default AccountItem

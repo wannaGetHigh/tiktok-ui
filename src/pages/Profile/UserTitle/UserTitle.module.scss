@@ -1,0 +1,71 @@
+// User profile
+.user-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.user-avatar {
+  width: 116px;
+  height: 116px;
+  border-radius: 50%;
+}
+
+.user-info {
+  flex: 1 1 0%;
+  cursor: pointer;
+  overflow: visible;
+  margin-left: 20px;
+
+  & .button {
+    margin-top: 16px;
+    width: 208px;
+    height: 36px;
+    padding: 0;
+  }
+}
+
+.user-title,
+.user-subtitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+}
+
+.user-title {
+  font-family: SofiaPro, sans-serif;
+  font-weight: 700;
+  font-size: 3.2rem;
+  line-height: 38px;
+  padding-bottom: 4px;
+
+  .check {
+    margin-left: 8px;
+  }
+}
+
+.user-subtitle {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 1.8rem;
+  line-height: 25px;
+}
+
+// User followed
+.followed-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.followed-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--haft-text);
+  border-radius: 4px;
+  margin-left: 8px;
+  margin-top: 16px;
+}

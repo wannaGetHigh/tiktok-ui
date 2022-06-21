@@ -43,6 +43,7 @@
   &.outline {
     color: var(--primary);
     border-color: currentColor;
+    background-color: var(--white);
 
     &:hover {
       background-color: rgba(254, 44, 85, 0.06);
@@ -53,7 +54,7 @@
 .outline {
   color: rgb(22, 24, 35);
   border-color: rgba(22, 24, 35, 0.12);
-  border-radius: 2px;
+  border-radius: 4px;
 
   &:hover {
     background-color: rgba(22, 24, 35, 0.03);

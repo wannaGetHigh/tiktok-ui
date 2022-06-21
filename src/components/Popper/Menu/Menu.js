@@ -31,7 +31,7 @@ const Menu = ({ children, items = [], hideOnClick = false, onChange = defaultFn 
   const renderResult = (attrs) => (
     <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
       <PopperWrapper>
-        {history.length > 1 && <Header title="Language" onBack={handleBack} />}
+        {history.length > 1 && <Header title={current.title} onBack={handleBack} />}
         <div className={cx('menu-body')}>{renderItems}</div>
       </PopperWrapper>
     </div>

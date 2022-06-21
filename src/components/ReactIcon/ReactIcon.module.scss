@@ -1,0 +1,46 @@
+.icon-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 48px;
+  width: 48px;
+  background-color: rgba(22, 24, 35, 0.06);
+  border-radius: 50%;
+  margin-top: 8px;
+  margin-bottom: 6px;
+
+  &.small {
+    height: 32px;
+    width: 32px;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+button.row {
+  display: inline-flex;
+  margin-right: 20px;
+  justify-content: center;
+  align-items: center;
+
+  .icon-wrapper {
+    margin-right: 6px;
+  }
+}
+
+.liked {
+  color: red;
+  animation: dropLike 2s ease;
+}
+
+@keyframes dropLike {
+  0% {
+    transform: scale(0.4);
+  }
+  80% {
+    transform: scale(1.2);
+  }
+}

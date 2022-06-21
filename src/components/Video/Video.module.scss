@@ -1,0 +1,118 @@
+.card {
+  position: relative;
+  box-sizing: border-box;
+  background: #eee center no-repeat;
+  -webkit-background-size: cover;
+  background-size: cover;
+  cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-right: 20px;
+  height: 600px;
+
+  .player {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .play-btn,
+  .volume-btn {
+    color: var(--white);
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+    display: none;
+  }
+
+  &:hover {
+    .play-btn,
+    .volume-btn {
+      display: block;
+    }
+  }
+
+  .play-btn {
+    bottom: 36px;
+    left: 30px;
+    position: absolute;
+  }
+
+  .volume-control {
+    bottom: 36px;
+    right: 30px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.volume-slider {
+  width: 24px;
+  height: 96px;
+  border-radius: 32px;
+  display: none;
+  background-color: rgba(255, 255, 255, 0.12);
+
+  input[type='range'] {
+    transform-origin: 43px 33px;
+    transform: rotate(-90deg);
+    -webkit-appearance: none;
+    appearance: none;
+    background: var(--white);
+    cursor: pointer;
+    width: 8rem;
+  }
+
+  input[type='range']::-webkit-slider-runnable-track {
+    background: rgba(255, 255, 255, 0.2);
+    height: 5px;
+  }
+
+  input[type='range']::-webkit-range-progress {
+    background-color: orange;
+  }
+
+  input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    margin-top: -6px; /* Centers thumb on the track */
+    background-color: var(--white);
+    height: 1.6rem;
+    width: 1.6rem;
+    border-radius: 50%;
+  }
+}
+
+.volume-control:hover {
+  .volume-slider {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .card {
+    width: calc(100vw - 32px - 60px);
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .card {
+    height: calc(380px + (100vw - 480px) / 288 * 20);
+  }
+}
+
+@media screen and (max-width: 1919px) {
+  .card {
+    height: calc(450px + (100vw - 768px) / 1152 * 100);
+  }
+}

@@ -1,0 +1,33 @@
+.share-list {
+  width: 280px;
+  overflow-y: auto;
+}
+
+.share-item {
+  display: flex;
+  align-items: center;
+  padding: 11px 16px;
+
+  &:hover {
+    background: rgba(22, 24, 35, 0.03);
+    cursor: pointer;
+  }
+
+  & .share-desc {
+    margin-left: 12px;
+    font-weight: 600;
+  }
+}
+
+.show-more-action {
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 16px;
+
+  &:hover {
+    background: rgba(22, 24, 35, 0.03);
+    cursor: pointer;
+  }
+}

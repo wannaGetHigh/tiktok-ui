@@ -1,0 +1,50 @@
+.share-action {
+  position: absolute;
+  top: 11px;
+  right: 52px;
+  cursor: pointer;
+}
+
+// More action
+.more-action {
+  position: absolute;
+  top: 11px;
+  cursor: pointer;
+  right: 12px;
+}
+
+.action-container {
+  color: rgb(18, 18, 18);
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 1.6rem;
+  line-height: 22px;
+  display: block;
+  padding: 0px 16px;
+  cursor: pointer;
+  -webkit-box-align: center;
+  align-items: center;
+  min-width: 180px;
+  box-sizing: border-box;
+  box-shadow: unset;
+
+  &:hover {
+    background-color: rgba(58, 65, 107, 0.03);
+  }
+}
+
+.action-item {
+  display: flex;
+  align-items: center;
+  padding: 13px 0px;
+  border-bottom: 1px solid rgba(22, 24, 35, 0.12);
+
+  .action-desc {
+    margin-left: 15px;
+    white-space: nowrap;
+  }
+}
+
+.no-border {
+  border: unset;
+}

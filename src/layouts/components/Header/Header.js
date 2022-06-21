@@ -1,5 +1,6 @@
 import classNames from 'classnames/bind'
 import Tippy from '@tippyjs/react'
+import TippyHeadless from '@tippyjs/react/headless'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faEllipsisVertical,
@@ -13,7 +14,6 @@ import {
   faSignOut,
 } from '@fortawesome/free-solid-svg-icons'
 import 'tippy.js/dist/tippy.css'
-
 import images from '~/assets/images'
 import styles from './Header.module.scss'
 import Button from '~/components/Button'
@@ -23,10 +23,11 @@ import { InboxIcon, MessageIcon } from '~/components/Icons'
 import Image from '~/components/Image'
 import Search from '../Search'
 import config from '~/config'
+import Notifications from '../Notifications'
 
 const cx = classNames.bind(styles)
 
-const Header = () => {
+const Header = ({ full = false }) => {
   const currentUser = true
 
   const MENU_ITEMS = [
@@ -41,72 +42,68 @@ const Header = () => {
             title: 'English',
           },
           {
-            code: 'es',
-            title: 'Español',
+            code: 'ar',
+            title: 'العربية',
           },
           {
-            code: 'vi',
-            title: 'Tiếng Việt',
+            code: 'cs',
+            title: 'Čeština (Česká republika)',
           },
           {
-            code: 'en',
-            title: 'English',
-          },
-          {
-            code: 'es',
-            title: 'Español',
-          },
-          {
-            code: 'vi',
-            title: 'Tiếng Việt',
-          },
-          {
-            code: 'en',
-            title: 'English',
+            code: 'de',
+            title: 'Deutsch',
           },
           {
             code: 'es',
             title: 'Español',
           },
           {
+            code: 'fi',
+            title: 'Suomi (Suomi)',
+          },
+          {
+            code: 'fil',
+            title: 'Filipino (Pilipinas)',
+          },
+          {
+            code: 'it',
+            title: 'Italiano (Italia)',
+          },
+          {
+            code: 'jp',
+            title: '日本語（日本）',
+          },
+          {
+            code: 'ko',
+            title: '한국어 (대한민국)',
+          },
+          {
+            code: 'jv-ID',
+            title: 'Basa Jawa (Indonesia)',
+          },
+          {
+            code: 'pl',
+            title: 'Polski (Polska)',
+          },
+          {
+            code: 'pt',
+            title: 'Português (Brasil)',
+          },
+          {
+            code: 'ro',
+            title: 'Română (Romania)',
+          },
+          {
             code: 'vi',
             title: 'Tiếng Việt',
           },
           {
-            code: 'en',
-            title: 'English',
+            code: 'zh-Hans',
+            title: '简体中文',
           },
           {
-            code: 'es',
-            title: 'Español',
-          },
-          {
-            code: 'vi',
-            title: 'Tiếng Việt',
-          },
-          {
-            code: 'en',
-            title: 'English',
-          },
-          {
-            code: 'es',
-            title: 'Español',
-          },
-          {
-            code: 'vi',
-            title: 'Tiếng Việt',
-          },
-          {
-            code: 'en',
-            title: 'English',
-          },
-          {
-            code: 'es',
-            title: 'Español',
-          },
-          {
-            code: 'vi',
-            title: 'Tiếng Việt',
+            code: 'zh-Hans-TW',
+            title: '繁體中文',
           },
         ],
       },
@@ -153,7 +150,7 @@ const Header = () => {
 
   return (
     <header className={cx('wrapper')}>
-      <div className={cx('inner')}>
+      <div className={cx('inner', { full })}>
         <Link to={config.routes.home} className={cx('logo-link')}>
           <Image src={images.logo} alt="Tiktok" />
         </Link>
@@ -174,10 +171,18 @@ const Header = () => {
                 </button>
               </Tippy>
               <Tippy content="Inbox" placement="bottom">
-                <button className={cx('action-btn')}>
-                  <InboxIcon />
-                  <span className={cx('badge')}>12</span>
-                </button>
+                <TippyHeadless
+                  trigger="click"
+                  offset={[-28, 8]}
+                  render={(attrs) => <Notifications attrs={attrs} />}
+                  interactive
+                  zIndex={10000}
+                >
+                  <button className={cx('action-btn')}>
+                    <InboxIcon />
+                    <span className={cx('badge')}>12</span>
+                  </button>
+                </TippyHeadless>
               </Tippy>
             </>
           ) : (

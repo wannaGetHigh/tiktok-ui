@@ -1,0 +1,33 @@
+footer {
+  padding-top: 16px;
+  padding-left: 8px;
+
+  span {
+    margin-top: 5px;
+    margin-right: 6px;
+    font-family: var(--font-family);
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 17px;
+    color: var(--haft-text);
+  }
+}
+
+.link-container {
+  margin-bottom: 8px;
+
+  & .footer-link {
+    display: inline-block;
+    margin-top: 5px;
+    margin-right: 6px;
+    font-family: var(--font-family);
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 17px;
+    color: var(--haft-text);
+  }
+
+  & a:hover {
+    text-decoration: underline;
+  }
+}

@@ -5,11 +5,11 @@
   --black: #000;
   --text-color: #161823;
   --white: #fff;
+  --haft-text: rgba(22, 24, 35, 0.5);
 
   // Default layout
   --default-layout-header-height: 60px;
   --default-layout-width: 1150px;
-  --default-layout-horizontal-spacer: 22px;
 
   // Default font
   --font-family: ProximaNova, sans-serif;
@@ -57,6 +57,7 @@ input,
 [tabindex] {
   outline: none;
   border: none;
+  background-color: transparent;
 }
 
 a {

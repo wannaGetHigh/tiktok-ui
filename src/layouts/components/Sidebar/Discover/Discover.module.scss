@@ -1,0 +1,58 @@
+.discover-container {
+  padding: 16px 8px 8px;
+  width: 100%;
+}
+
+.discover-list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+
+  & a {
+    width: fit-content;
+    max-width: 100%;
+  }
+}
+
+.discover-item {
+  display: flex;
+  padding: 3px 10px;
+  height: 24px;
+  margin-bottom: 12px;
+  margin-right: 8px;
+  border: 1px solid rgba(22, 24, 35, 0.2);
+  border-radius: 12px;
+  transition: background 200ms ease-in-out 0s;
+
+  & svg {
+    flex-shrink: 0;
+  }
+
+  &:hover {
+    background: rgba(22, 24, 35, 0.03);
+  }
+
+  &:active {
+    background: rgba(22, 24, 35, 0.06);
+  }
+}
+
+.discover-title {
+  margin-bottom: 8px;
+  color: rgba(22, 24, 35, 0.75);
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.discover-text {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  padding-left: 6px;
+  color: var(--text-color);
+  opacity: 0.75;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+}

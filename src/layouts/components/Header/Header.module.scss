@@ -21,9 +21,16 @@
   align-items: center;
   justify-content: space-between;
   height: 100%;
-  width: var(--default-layout-width);
-  padding: 0 var(--default-layout-horizontal-spacer);
+  width: 100%;
+  max-width: var(--default-layout-width);
+  padding: 0 24px 0 20px;
   margin: 0 auto;
+}
+
+.full {
+  max-width: 100%;
+  padding-right: 24px;
+  padding-left: 16px;
 }
 
 .logo-link {
@@ -52,6 +59,10 @@
   position: relative;
   display: flex;
   margin-left: 16px;
+
+  & svg {
+    fill: currentColor;
+  }
 }
 
 .badge {

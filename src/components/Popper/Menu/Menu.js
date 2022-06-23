@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import Tippy from '@tippyjs/react/headless'
 import styles from './Menu.module.scss'
@@ -23,7 +23,7 @@ const Menu = ({ children, items = [], hideOnClick = false, onChange = defaultFn 
       <MenuItem
         key={index}
         data={item}
-        onClick={() => (isParent ? setHistory((prev) => [...prev, item.children]) : onChange(item))}
+        onClick={() => (isParent ? setHistory((prev) => [...prev, item.children]) : onChange(item?.onClick))}
       />
     )
   })
@@ -45,6 +45,8 @@ const Menu = ({ children, items = [], hideOnClick = false, onChange = defaultFn 
   const handleReset = () => {
     setHistory((prev) => prev.slice(0, 1))
   }
+
+  useEffect(() => setHistory([{ data: items }]), [items])
 
   return (
     <Tippy

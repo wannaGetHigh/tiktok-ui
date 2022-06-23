@@ -15,7 +15,7 @@ const Image = forwardRef(({ src, className, fallback: customFallbak = images.noI
     <img
       className={classNames(styles.wrapper, className)}
       ref={ref}
-      src={fallback || src}
+      src={src || fallback}
       alt={alt}
       onError={handleError}
     />

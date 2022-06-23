@@ -3,7 +3,7 @@ import classNames from 'classnames/bind'
 import styles from './SuggestedAccount.module.scss'
 import TippyHeadless from '@tippyjs/react/headless'
 import 'tippy.js/dist/tippy.css'
-import db from '~/firebase'
+import { db } from '~/firebase'
 import { collection, query, where, getDocs } from 'firebase/firestore'
 
 import AccountItem from '~/components/AccountItem'

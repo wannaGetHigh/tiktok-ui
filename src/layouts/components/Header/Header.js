@@ -1,3 +1,4 @@
+import { useContext } from 'react'
 import classNames from 'classnames/bind'
 import Tippy from '@tippyjs/react'
 import TippyHeadless from '@tippyjs/react/headless'
@@ -24,11 +25,12 @@ import Image from '~/components/Image'
 import Search from '../Search'
 import config from '~/config'
 import Notifications from '../Notifications'
+import { CurrentUserContext } from '~/App'
 
 const cx = classNames.bind(styles)
 
 const Header = ({ full = false }) => {
-  const currentUser = true
+  const { currentUser, handleLogout } = useContext(CurrentUserContext)
 
   const MENU_ITEMS = [
     {
@@ -139,13 +141,15 @@ const Header = ({ full = false }) => {
     {
       icon: <FontAwesomeIcon icon={faSignOut} />,
       title: 'Log out',
-      to: '/logout',
+      onClick: handleLogout,
       separate: true,
     },
   ]
 
   function handleMenuChange(menuItem) {
-    console.log(menuItem)
+    if (menuItem) {
+      menuItem()
+    }
   }
 
   return (
@@ -186,11 +190,15 @@ const Header = ({ full = false }) => {
               </Tippy>
             </>
           ) : (
-            <Button primary>Log in</Button>
+            <Link to={config.routes.login}>
+              <Button primary className={cx('login-btn')}>
+                Log in
+              </Button>
+            </Link>
           )}
           <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
             {currentUser ? (
-              <Image src={images.avatar} className={cx('user-avatar')} alt="Nguyen Van A" />
+              <Image src={currentUser.avatar} className={cx('user-avatar')} alt={currentUser.name} />
             ) : (
               <button className={cx('more-btn')}>
                 <FontAwesomeIcon icon={faEllipsisVertical} />

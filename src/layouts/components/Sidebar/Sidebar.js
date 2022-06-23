@@ -24,10 +24,6 @@ const Sidebar = ({ options }) => {
       <SuggestedAccount options={options} />
       <div className={cx('separate-line')}></div>
 
-      {/* <div className={cx('follow-container')}>
-        <p className={cx('follow-title')}>Following accounts</p>
-        <p className={cx('follow-empty-hint')}>Accounts you follow will appear here</p>
-      </div> */}
       <FollowingAccount options={options} />
       <div className={cx('separate-line')}></div>
 

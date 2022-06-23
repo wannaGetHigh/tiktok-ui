@@ -6,13 +6,46 @@ import classNames from 'classnames/bind'
 import styles from './Notifications.module.scss'
 import { Wrapper } from '~/components/Popper'
 import { HeartIcon, InboxIcon, CommentIcon, MentionIcon, FollowerIcon } from '~/components/Icons'
-import { notiApi } from '~/assets/fakeApi'
 
 const cx = classNames.bind(styles)
 
 const Notifications = ({ attrs }) => {
   const [tab, setTab] = useState('all')
   const [loading, setLoading] = useState(false)
+
+  const notiApi = [
+    {
+      type: 'all',
+      icon: 'inbox',
+      title: 'All activity',
+      desc: 'Notifications about your account will appear here.',
+    },
+    {
+      type: 'likes',
+      icon: 'heart',
+      title: 'Likes on your videos',
+      desc: "When someone likes one of your videos, you'll see it here",
+    },
+    {
+      type: 'comments',
+      icon: 'comments',
+      title: 'Comments on your videos',
+      desc: "When someone comments on one of your videos, you'll see it here",
+    },
+    {
+      type: 'mention',
+      icon: 'mention',
+      title: 'Mentions of You',
+      desc: "When someone mentions you, you'll see it here",
+    },
+    {
+      type: 'follower',
+      icon: 'follower',
+      title: 'New followers',
+      desc: "When someone new follows you, you'll see it here",
+    },
+  ]
+
   const notiErrorBody = notiApi.filter((noti) => noti.type === tab)[0]
   const notiErrorIcon =
     notiErrorBody.icon === 'inbox' ? (

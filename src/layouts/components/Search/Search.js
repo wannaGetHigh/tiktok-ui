@@ -11,7 +11,7 @@ import { SearchIcon } from '~/components/Icons'
 // import * as searchService from '~/services/searchService'
 import AccountItem from '~/components/AccountItem'
 import { Wrapper as PopperWrapper } from '~/components/Popper'
-import db from '~/firebase'
+import { db } from '~/firebase'
 
 const cx = classNames.bind(styles)
 

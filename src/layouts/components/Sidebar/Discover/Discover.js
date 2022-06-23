@@ -1,22 +1,19 @@
 import { useEffect, useState } from 'react'
+import { collection, getDocs } from 'firebase/firestore'
 import classNames from 'classnames/bind'
 import styles from './Discover.module.scss'
 import { HashtagIcon, MusicNoteIcon } from '~/components/Icons'
-// fakeApi
-import { discover } from '~/assets/fakeApi'
+import { db } from '~/firebase'
 
 const cx = classNames.bind(styles)
 
 const Discover = () => {
   const [discoverApi, setDiscoverdApi] = useState([])
 
-  const convertMusic = (text) => {
-    return text.split('-')[0].split(' ').join('-')
-  }
-
   useEffect(() => {
-    const fetchApi = () => {
-      setDiscoverdApi(discover)
+    const fetchApi = async () => {
+      const discoverSnap = await getDocs(collection(db, 'discovers'))
+      setDiscoverdApi(discoverSnap.docs)
     }
 
     fetchApi()
@@ -26,21 +23,24 @@ const Discover = () => {
     <div className={cx('discover-container')}>
       <p className={cx('discover-title')}>Discover</p>
       <div className={cx('discover-list')}>
-        {discoverApi.map((item) => (
-          <a
-            href={
-              item.type === 'hashtag'
-                ? `https://www.tiktok.com/tag/${item.text}`
-                : `https://www.tiktok.com/music/${convertMusic(item.text)}`
-            }
-            key={item.id}
-          >
-            <div className={cx('discover-item')}>
-              {item.type === 'hashtag' ? <HashtagIcon /> : <MusicNoteIcon />}
-              <p className={cx('discover-text')}>{item.text}</p>
-            </div>
-          </a>
-        ))}
+        {discoverApi.map((item) => {
+          const data = item.data()
+          return (
+            <a
+              href={
+                data.type === 'hashtag'
+                  ? `https://www.tiktok.com/tag/${data.content}`
+                  : `https://www.tiktok.com/music/${data.content}`
+              }
+              key={item.id}
+            >
+              <div className={cx('discover-item')}>
+                {data.type === 'hashtag' ? <HashtagIcon /> : <MusicNoteIcon />}
+                <p className={cx('discover-text')}>{data.content}</p>
+              </div>
+            </a>
+          )
+        })}
       </div>
     </div>
   )

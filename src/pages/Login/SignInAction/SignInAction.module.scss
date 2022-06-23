@@ -1,0 +1,40 @@
+.action-list {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  width: 320px;
+  margin: 32px auto 0px;
+  overflow-y: auto;
+  width: 100%;
+}
+.action-item {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid rgba(22, 24, 35, 0.12);
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+.action-desc {
+  width: 44px;
+  height: 44px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid rgba(22, 24, 35, 0.12);
+}
+
+.action-text {
+  margin-left: 12px;
+  word-break: break-word;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  text-align: center;
+  font-family: var(--font-family);
+  font-size: 1.5rem;
+  color: #161823;
+  font-weight: 600;
+}

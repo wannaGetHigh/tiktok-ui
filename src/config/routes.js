@@ -6,6 +6,7 @@ const routes = {
   upload: '/upload',
   search: '/search',
   notFound: '/*',
+  login: '/login',
 }
 
 export default routes

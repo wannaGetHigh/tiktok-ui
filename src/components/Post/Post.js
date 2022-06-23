@@ -14,7 +14,7 @@ import { usePlayVideoOnScreen } from '~/hooks'
 import Menu from './Menu'
 import Video from '~/components/Video'
 import ReactIcon from '../ReactIcon'
-import db from '~/firebase'
+import { db } from '~/firebase'
 import FollowButton from '../FollowButton'
 
 const cx = classNames.bind(styles)
@@ -85,11 +85,11 @@ const Post = ({ post }) => {
 
           <div className={cx('action-btn')}>
             <ReactIcon liked Icon={HeartIconSolid}>
-              {post.likes}
+              {post.like_counts}
             </ReactIcon>
-            <ReactIcon Icon={CommentIconSolid}>{post.comments}</ReactIcon>
+            <ReactIcon Icon={CommentIconSolid}>{post.comment_counts}</ReactIcon>
             <Menu>
-              <ReactIcon Icon={ShareIconSolid}>{post.shares}</ReactIcon>
+              <ReactIcon Icon={ShareIconSolid}>{post.share_counts}</ReactIcon>
             </Menu>
           </div>
         </div>

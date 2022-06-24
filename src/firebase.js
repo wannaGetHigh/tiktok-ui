@@ -15,12 +15,12 @@ import {
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyDW5TLczUzBtpJ-_K9nVCqSppQay50WBqc',
-  authDomain: 'tiktok-ui-790f4.firebaseapp.com',
-  projectId: 'tiktok-ui-790f4',
-  storageBucket: 'tiktok-ui-790f4.appspot.com',
-  messagingSenderId: '247086529163',
-  appId: '1:247086529163:web:86b738e48ab9a347e9328e',
+  apiKey: `AIzaSyDW5TLczUzBtpJ-_K9nVCqSppQay50WBqc`,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
 }
 
 // Initialize Firebase
@@ -31,6 +31,31 @@ const db = getFirestore(app)
 
 // Authentication Firebase
 const auth = getAuth(app)
+
+// Dispatch error to client side
+function mapAuthCodeToMessage(authCode) {
+  switch (authCode) {
+    case 'auth/invalid-password':
+      return 'Password provided is not corrected'
+
+    case 'auth/invalid-email':
+      return 'Email provided is invalid'
+
+    case 'auth/user-not-found':
+      return 'User not found'
+
+    case 'auth/email-already-in-use':
+      return 'Email has alreadry used'
+
+    case 'auth/weak-password':
+      return 'Password should be at least 6 characters'
+
+    // Many more authCode mapping here...
+
+    default:
+      return ''
+  }
+}
 
 // Login with Google account if not register with db
 const googleProvider = new GoogleAuthProvider()
@@ -51,34 +76,37 @@ const signInWithGoogle = async () => {
     }
   } catch (err) {
     console.error(err)
-    alert(err.message)
   }
 }
 
 // Login with email and password
-const logInWithEmailAndPassword = async (email, password) => {
-  try {
-    await signInWithEmailAndPassword(auth, email, password)
-  } catch (err) {
-    console.error(err)
-    alert(err.message)
+const logInWithEmailAndPassword = (email, password) => {
+  return async (dispatch) => {
+    try {
+      await signInWithEmailAndPassword(auth, email, password)
+    } catch (err) {
+      console.log(err)
+      dispatch({ type: 'authError', message: mapAuthCodeToMessage(err.code) })
+    }
   }
 }
 
 // Register user with email and password
-const registerWithEmailAndPassword = async (name, email, password) => {
-  try {
-    const res = await createUserWithEmailAndPassword(auth, email, password)
-    const master = res.user
-    await addDoc(collection(db, 'masters'), {
-      uid: master.uid,
-      name,
-      authProvider: 'local',
-      email,
-    })
-  } catch (err) {
-    console.error(err)
-    alert(err.message)
+const registerWithEmailAndPassword = (name, email, password) => {
+  return async (dispatch) => {
+    try {
+      const res = await createUserWithEmailAndPassword(auth, email, password)
+      const master = res.user
+      await addDoc(collection(db, 'masters'), {
+        uid: master.uid,
+        name,
+        authProvider: 'local',
+        email,
+      })
+    } catch (err) {
+      console.error(err)
+      dispatch({ type: 'authError', message: mapAuthCodeToMessage(err.code) })
+    }
   }
 }
 
@@ -89,7 +117,6 @@ const sendPasswordReset = async (email) => {
     alert('Password reset link sent!')
   } catch (err) {
     console.error(err)
-    alert(err.message)
   }
 }
 

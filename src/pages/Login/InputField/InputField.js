@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Button from '~/components/Button'
 import styles from './InputField.module.scss'
 import { registerWithEmailAndPassword, logInWithEmailAndPassword } from '~/firebase'
@@ -10,14 +10,31 @@ function InputField({ isLogin }) {
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
+  const [err, setErr] = useState('')
+  let dispatch
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault()
     if (isLogin) {
-      logInWithEmailAndPassword(email, password)
+      dispatch = logInWithEmailAndPassword(email, password)
+      dispatch(setErr)
     } else {
-      registerWithEmailAndPassword(name, email, password)
+      dispatch = registerWithEmailAndPassword(name, email, password)
+      dispatch(setErr)
     }
   }
+
+  useEffect(() => {
+    if (!isLogin) {
+      setEmail('')
+      setName('')
+      setPassword('')
+      setErr('')
+    } else {
+      setEmail('')
+      setPassword('')
+    }
+  }, [isLogin])
 
   return (
     <div className={cx('input-container')}>
@@ -34,6 +51,8 @@ function InputField({ isLogin }) {
         <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
       </div>
 
+      {err && <div className={cx('error-filed')}>{err.message}</div>}
+
       <Button
         onClick={handleSubmit}
         outline
@@ -46,4 +65,5 @@ function InputField({ isLogin }) {
     </div>
   )
 }
+
 export default InputField

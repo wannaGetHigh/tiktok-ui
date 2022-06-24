@@ -5,6 +5,7 @@
   position: relative;
   left: calc(var(--circle-diameter) * -1);
   text-align: center;
+  width: 100%;
 }
 
 #loader:before,

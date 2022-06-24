@@ -8,6 +8,7 @@ import Loader from '~/components/Loader'
 import { db } from '~/firebase'
 import { CurrentUserContext } from '~/App'
 import { Link } from 'react-router-dom'
+import ScrollToTopBtn from '~/components/ScrollToTopBtn'
 
 const cx = classNames.bind(styles)
 
@@ -48,6 +49,7 @@ const Following = () => {
           <Post key={video.id} post={video.data()} />
         ))}
       </div>
+      {videos.length > 0 && <ScrollToTopBtn />}
       {!loading && videos.length === 0 && <h2>Please follow other accounts to see their videos</h2>}
       {/* <Modal /> */}
     </main>

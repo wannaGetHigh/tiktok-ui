@@ -21,7 +21,7 @@ function App() {
       setCurrentUser({ name: data.name, avatar: data.avatar, email: data.email })
     } catch (err) {
       console.error(err)
-      alert('An error occured while fetching user data')
+      if (user) fetchUserName()
     }
   }
 
@@ -32,9 +32,8 @@ function App() {
 
   useEffect(() => {
     if (loading) return
-    if (!user) {
-      return
-    }
+
+    if (!user) return
 
     fetchUserName()
     // eslint-disable-next-line react-hooks/exhaustive-deps

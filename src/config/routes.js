@@ -7,6 +7,9 @@ const routes = {
   search: '/search',
   notFound: '/*',
   login: '/login',
+  feedback: '/feedback',
+  coin: '/coin',
+  settings: '/settings',
 }
 
 export default routes

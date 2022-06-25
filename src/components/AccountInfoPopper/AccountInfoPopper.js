@@ -38,7 +38,9 @@ const AccountInfoPopper = ({ account, id, bio = false }) => {
 }
 
 AccountInfoPopper.propTypes = {
-  account: PropTypes.object,
+  account: PropTypes.object.isRequired,
+  id: PropTypes.string,
+  bio: PropTypes.bool,
 }
 
 export default AccountInfoPopper

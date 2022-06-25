@@ -26,6 +26,7 @@ import Search from '../Search'
 import config from '~/config'
 import Notifications from '../Notifications'
 import { CurrentUserContext } from '~/App'
+import PropTypes from 'prop-types'
 
 const cx = classNames.bind(styles)
 
@@ -210,4 +211,9 @@ const Header = ({ full = false }) => {
     </header>
   )
 }
+
+Header.propTypes = {
+  full: PropTypes.bool,
+}
+
 export default Header

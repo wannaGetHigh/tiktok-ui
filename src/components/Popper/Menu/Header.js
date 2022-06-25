@@ -19,7 +19,7 @@ const Header = ({ title, onBack }) => {
 
 Header.prototype = {
   title: PropTypes.string.isRequired,
-  onBack: PropTypes.string.isRequired,
+  onBack: PropTypes.func.isRequired,
 }
 
 export default Header

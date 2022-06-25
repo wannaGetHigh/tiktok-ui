@@ -10,6 +10,7 @@ import Tippy from '@tippyjs/react'
 
 import Image from '../Image'
 import styles from './Modal.module.scss'
+import PropTypes from 'prop-types'
 import {
   BrowseLogo,
   FlagIcon,
@@ -171,4 +172,9 @@ const Modal = ({ post }) => {
     </div>
   )
 }
+
+Modal.propTypes = {
+  post: PropTypes.elementType.isRequired,
+}
+
 export default Modal

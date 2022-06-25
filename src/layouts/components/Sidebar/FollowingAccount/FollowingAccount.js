@@ -9,6 +9,7 @@ import AccountItem from '~/components/AccountItem'
 import { CurrentUserContext } from '~/App'
 import Button from '~/components/Button'
 import config from '~/config'
+import PropTypes from 'prop-types'
 
 const cx = classNames.bind(styles)
 
@@ -77,4 +78,9 @@ const FollowingAccount = ({ options }) => {
     </div>
   )
 }
+
+FollowingAccount.propTypes = {
+  options: PropTypes.object,
+}
+
 export default FollowingAccount

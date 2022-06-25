@@ -3,6 +3,7 @@ import classNames from 'classnames/bind'
 import styles from './Video.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPause, faPlay, faVolumeMute, faVolumeHigh } from '@fortawesome/free-solid-svg-icons'
+import PropTypes from 'prop-types'
 
 const cx = classNames.bind(styles)
 
@@ -72,4 +73,9 @@ const Video = forwardRef(({ src }, ref) => {
     </div>
   )
 })
+
+Video.propTypes = {
+  src: PropTypes.string.isRequired,
+}
+
 export default Video

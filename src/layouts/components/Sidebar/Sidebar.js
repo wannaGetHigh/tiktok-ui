@@ -8,6 +8,7 @@ import Footer from './Footer'
 import config from '~/config'
 import Menu, { MenuItem } from './Menu'
 import FollowingAccount from './FollowingAccount'
+import PropTypes from 'prop-types'
 
 const cx = classNames.bind(styles)
 
@@ -34,4 +35,9 @@ const Sidebar = ({ options }) => {
     </aside>
   )
 }
+
+Sidebar.propTypes = {
+  option: PropTypes.object,
+}
+
 export default Sidebar

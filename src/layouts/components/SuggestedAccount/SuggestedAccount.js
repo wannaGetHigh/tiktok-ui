@@ -5,6 +5,7 @@ import TippyHeadless from '@tippyjs/react/headless'
 import 'tippy.js/dist/tippy.css'
 import { db } from '~/firebase'
 import { collection, query, where, getDocs } from 'firebase/firestore'
+import PropTypes from 'prop-types'
 
 import AccountItem from '~/components/AccountItem'
 import AccountInfoPopper from '~/components/AccountInfoPopper'
@@ -60,4 +61,9 @@ const SuggestedAccount = ({ options }) => {
     </div>
   )
 }
+
+SuggestedAccount.propTypes = {
+  options: PropTypes.object,
+}
+
 export default SuggestedAccount

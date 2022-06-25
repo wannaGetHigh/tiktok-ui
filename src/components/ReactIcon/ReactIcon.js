@@ -2,6 +2,7 @@ import { useState } from 'react'
 import styles from './ReactIcon.module.scss'
 import classNames from 'classnames/bind'
 import { forwardRef } from 'react'
+import PropTypes from 'prop-types'
 
 const cx = classNames.bind(styles)
 
@@ -28,4 +29,14 @@ const ReactIcon = forwardRef(({ children, Icon, small, row, liked, wrap = true }
     </div>
   )
 })
+
+ReactIcon.propTypes = {
+  children: PropTypes.node.isRequired,
+  Icon: PropTypes.elementType,
+  small: PropTypes.bool,
+  row: PropTypes.bool,
+  liked: PropTypes.bool,
+  wrap: PropTypes.bool,
+}
+
 export default ReactIcon

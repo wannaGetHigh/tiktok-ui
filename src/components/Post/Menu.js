@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import TippyHeadless from '@tippyjs/react/headless'
 import ShareAction from '../ShareAction'
+import PropTypes from 'prop-types'
 
 const Menu = ({ children }) => {
   const [showAll, setShowAll] = useState(false)
@@ -18,4 +19,9 @@ const Menu = ({ children }) => {
     </TippyHeadless>
   )
 }
+
+Menu.propTypes = {
+  children: PropTypes.node,
+}
+
 export default Menu

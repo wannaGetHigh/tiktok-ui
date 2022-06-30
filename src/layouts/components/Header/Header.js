@@ -25,13 +25,13 @@ import Image from '~/components/Image'
 import Search from '../Search'
 import config from '~/config'
 import Notifications from '../Notifications'
-import { CurrentUserContext } from '~/App'
+import { AuthContext } from '~/context/AuthContext'
 import PropTypes from 'prop-types'
 
 const cx = classNames.bind(styles)
 
 const Header = ({ full = false }) => {
-  const { currentUser, handleLogout } = useContext(CurrentUserContext)
+  const { currentUser, handleLogout } = useContext(AuthContext)
 
   const MENU_ITEMS = [
     {

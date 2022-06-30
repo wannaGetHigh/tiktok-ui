@@ -19,14 +19,11 @@ const Profile = () => {
 
   useEffect(() => {
     async function getUser() {
-      const q = query(collection(db, 'users'), where('nickname', '==', user.nickname))
+      const profileQuery = query(collection(db, 'users'), where('nickname', '==', user.nickname))
 
-      const querySnapshot = await getDocs(q)
-      querySnapshot.forEach((doc) => {
-        // Find and render user profile
-        setAccount(doc.data())
-        setId(doc.id)
-      })
+      const profileSnap = await getDocs(profileQuery)
+      setAccount(profileSnap.docs[0].data())
+      setId(profileSnap.docs[0].id)
     }
 
     getUser()

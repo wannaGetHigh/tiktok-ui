@@ -17,7 +17,7 @@ const AccountInfoPopper = ({ account, id, bio = false }) => {
           <Image src={account.avatar} alt={account.full_name} />
         </Link>
 
-        <FollowButton isFollowed={account.isFollowed} id={id} />
+        <FollowButton id={id} />
       </div>
       <Link to={`/@${account.nickname}`} className={cx('account-info-title')}>
         {account.nickname}

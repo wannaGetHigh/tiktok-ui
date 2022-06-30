@@ -31,7 +31,7 @@ const ReactIcon = forwardRef(({ children, Icon, small, row, liked, wrap = true }
 })
 
 ReactIcon.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   Icon: PropTypes.elementType,
   small: PropTypes.bool,
   row: PropTypes.bool,

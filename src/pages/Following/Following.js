@@ -6,7 +6,7 @@ import styles from './Following.module.scss'
 import Loader from '~/components/Loader'
 // import Modal from '~/components/Modal'
 import { db } from '~/firebase'
-import { CurrentUserContext } from '~/App'
+import { AuthContext } from '~/context/AuthContext'
 import { Link } from 'react-router-dom'
 import ScrollToTopBtn from '~/components/ScrollToTopBtn'
 
@@ -15,7 +15,7 @@ const cx = classNames.bind(styles)
 const Following = () => {
   const [videos, setVideos] = useState([])
   const [loading, setLoading] = useState(false)
-  const { currentUser } = useContext(CurrentUserContext)
+  const { currentUser } = useContext(AuthContext)
 
   useEffect(() => {
     const fetchVideo = async () => {

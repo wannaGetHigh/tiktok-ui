@@ -6,15 +6,18 @@ import Tippy from '@tippyjs/react'
 import Image from '~/components/Image'
 import Button from '~/components/Button'
 import { CheckCircle, UserFollowed } from '~/components/Icons'
-import toggleFollow from '~/utils/toggleFollow'
-import { CurrentUserContext } from '~/App'
+import toggleFollow from '~/services/toggleFollow'
+import { AuthContext } from '~/context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 
 const cx = classNames.bind(styles)
 
-const Header = ({ account, id }) => {
-  const { currentUser } = useContext(CurrentUserContext)
+const UserTitle = ({ account, id }) => {
+  const { currentUser } = useContext(AuthContext)
   const navigate = useNavigate()
+
+  // Find master followed other user list
+  const isFollowed = currentUser?.followedUserList?.includes(id)
 
   return (
     <div className={cx('user-container')}>
@@ -26,7 +29,7 @@ const Header = ({ account, id }) => {
           {account.tick && <CheckCircle className={cx('check')} />}
         </h2>
         <h1 className={cx('user-subtitle')}>{account.full_name}</h1>
-        {account.isFollowed && currentUser ? (
+        {isFollowed ? (
           <div className={cx('followed-container')}>
             <Button primary outline large className={cx('button')}>
               Message
@@ -35,7 +38,7 @@ const Header = ({ account, id }) => {
               <div
                 className={cx('followed-icon')}
                 onClick={() => {
-                  toggleFollow(id, false)
+                  toggleFollow(currentUser, id, false)
                 }}
               >
                 <UserFollowed />
@@ -49,7 +52,7 @@ const Header = ({ account, id }) => {
             className={cx('button')}
             onClick={() => {
               if (currentUser) {
-                toggleFollow(id, true)
+                toggleFollow(currentUser, id, true)
               } else {
                 navigate('/login')
               }
@@ -62,4 +65,4 @@ const Header = ({ account, id }) => {
     </div>
   )
 }
-export default Header
+export default UserTitle

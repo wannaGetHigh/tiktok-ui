@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { collection, query, where, getDocs } from 'firebase/firestore'
+import { collection, query, where, onSnapshot } from 'firebase/firestore'
 import classNames from 'classnames/bind'
 import { Link } from 'react-router-dom'
 import TippyHeadless from '@tippyjs/react/headless'
@@ -38,16 +38,14 @@ const Post = ({ post }) => {
   }
 
   useEffect(() => {
-    const fetchAuthor = async () => {
-      const q = query(collection(db, 'users'), where('nickname', '==', post.video_owner.nickname))
+    const authorQuery = query(collection(db, 'users'), where('nickname', '==', post.video_owner.nickname))
+    const unsubcribe = onSnapshot(authorQuery, (authorSnap) => {
+      setAuthor(authorSnap.docs[0].data())
+      setIdAuthor(authorSnap.docs[0].id)
+    })
 
-      const querySnapshot = await getDocs(q)
-      setAuthor(querySnapshot.docs[0].data())
-      setIdAuthor(querySnapshot.docs[0].id)
-    }
-
-    fetchAuthor()
-    // eslint-disable-next-line
+    return () => unsubcribe()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

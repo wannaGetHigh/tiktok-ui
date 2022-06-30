@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app'
-import { getFirestore, getDocs, addDoc, collection, query, where } from 'firebase/firestore'
+import { getFirestore, doc, getDoc, addDoc, collection, setDoc } from 'firebase/firestore'
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -64,15 +64,17 @@ const signInWithGoogle = async () => {
   try {
     const res = await signInWithPopup(auth, googleProvider)
     const master = res.user
-    const q = query(collection(db, 'masters'), where('uid', '==', master.uid))
-    const docs = await getDocs(q)
-    if (docs.docs.length === 0) {
-      await addDoc(collection(db, 'masters'), {
+    const masterRef = doc(db, 'masters', master.uid)
+    const masterSnap = await getDoc(masterRef)
+    if (!masterSnap.exists()) {
+      await setDoc(doc(db, 'masters', master.uid), {
         uid: master.uid,
         name: master.displayName,
         authProvider: 'google',
         email: master.email,
         avatar: master.photoURL,
+        followedUserList: [],
+        likedPostList: [],
       })
     }
   } catch (err) {

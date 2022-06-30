@@ -20,26 +20,25 @@ const Following = () => {
   useEffect(() => {
     const fetchVideo = async () => {
       try {
-        setLoading(true)
-
-        const q = query(collection(db, 'users'), where('isFollowed', '==', true))
-        const followedUserSnap = await getDocs(q)
-        followedUserSnap.forEach(async (doc) => {
-          if (doc.data().video_own) {
-            const videoQuery = query(collection(db, 'videos'), where('video_owner.nickname', '==', doc.data().nickname))
-            const videoSnap = await getDocs(videoQuery)
-            setVideos((prev) => [...prev, ...videoSnap.docs])
-          }
-        })
-
-        setLoading(false)
+        if (currentUser?.followedUserList?.length !== 0) {
+          setLoading(true)
+          const videoQuery = query(
+            collection(db, 'videos'),
+            where('video_owner.uid', 'in', currentUser?.followedUserList),
+          )
+          const videoSnap = await getDocs(videoQuery)
+          setVideos(videoSnap.docs)
+          setLoading(false)
+        } else {
+          setVideos([])
+        }
       } catch (error) {
         console.log(error)
       }
     }
 
     fetchVideo()
-  }, [])
+  }, [currentUser?.followedUserList])
 
   return currentUser ? (
     <main className={cx('main-content')}>

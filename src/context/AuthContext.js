@@ -23,7 +23,7 @@ export default function AuthProvider({ children }) {
           setCurrentUser(snapshot.data())
         })
       } else {
-        setCurrentUser({})
+        setCurrentUser(null)
       }
     })
 

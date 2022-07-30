@@ -9,19 +9,21 @@ import { CheckCircle, UserFollowed } from '~/components/Icons'
 import toggleFollow from '~/services/toggleFollow'
 import { AuthContext } from '~/context/AuthContext'
 import { useNavigate } from 'react-router-dom'
+import { useAvatarImage } from '~/hooks'
 
 const cx = classNames.bind(styles)
 
 const UserTitle = ({ account, id }) => {
   const { currentUser } = useContext(AuthContext)
   const navigate = useNavigate()
+  const avatarSrc = useAvatarImage(id)
 
   // Find master followed other user list
   const isFollowed = currentUser?.followedUserList?.includes(id)
 
   return (
     <div className={cx('user-container')}>
-      <Image src={account.avatar} alt={account.nickname} className={cx('user-avatar')} />
+      <Image src={avatarSrc} alt={account.nickname} className={cx('user-avatar')} />
 
       <div className={cx('user-info')}>
         <h2 className={cx('user-title')}>

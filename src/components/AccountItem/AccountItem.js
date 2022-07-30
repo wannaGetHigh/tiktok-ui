@@ -6,15 +6,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import Image from '~/components/Image'
 import { forwardRef } from 'react'
+import { useAvatarImage } from '~/hooks'
 
 const cx = classNames.bind(styles)
 
 const AccountItem = forwardRef(({ data, options = {} }, ref) => {
   const { small, hidden } = options
+  const avatarSrc = useAvatarImage(data.uid)
 
   return (
     <Link to={`/@${data.nickname}`} className={cx('wrapper')} ref={ref}>
-      <Image className={cx('avatar', { small })} src={data.avatar} alt={data.full_name} />
+      <Image className={cx('avatar', { small })} src={avatarSrc} alt={data.full_name} />
       <div className={cx('info', { hidden })}>
         <h4 className={cx('nickname', { small })}>
           <span>{data.nickname}</span>

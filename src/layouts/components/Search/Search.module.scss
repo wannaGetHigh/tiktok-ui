@@ -8,6 +8,12 @@
   width: 361px;
 }
 
+.search-result {
+  height: 400px;
+  overflow-y: auto;
+  background-color: var(--white) !important;
+}
+
 .search {
   height: var(--search-height);
   border: 1.5px solid transparent;

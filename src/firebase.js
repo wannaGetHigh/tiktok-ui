@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app'
 import { getFirestore, doc, getDoc, addDoc, collection, setDoc } from 'firebase/firestore'
+import { getStorage, ref, getDownloadURL } from 'firebase/storage'
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -32,6 +33,9 @@ const db = getFirestore(app)
 
 // Authentication Firebase
 const auth = getAuth(app)
+
+// Storage
+const storage = getStorage(app)
 
 // Dispatch error to client side
 function mapAuthCodeToMessage(authCode) {
@@ -128,6 +132,42 @@ const logout = () => {
   signOut(auth)
 }
 
+// Upload image
+// const uploadFile = () => {
+//   if (imageUpload == null) return;
+//   const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
+//   uploadBytes(imageRef, imageUpload).then((snapshot) => {
+//     getDownloadURL(snapshot.ref).then((url) => {
+//       setImageUrls((prev) => [...prev, url]);
+//     });
+//   });
+// }
+
+// Download image
+const downloadImage = (id) => {
+  const url = getDownloadURL(ref(storage, `avatar/${id}.jpeg`))
+  // .then((url) => {
+  // `url` is the download URL for 'avatar/uid.jpg'
+
+  // This can be downloaded directly:
+  // const xhr = new XMLHttpRequest();
+  // xhr.responseType = 'blob';
+  // xhr.onload = (event) => {
+  //   const blob = xhr.response;
+  // };
+  // xhr.open('GET', url);
+  // xhr.send();
+
+  // Or inserted into an <img> element
+  // const img = document.getElementById('myimg');
+  // img.setAttribute('src', url);
+  // })
+  return url.catch((error) => {
+    // Handle any errors
+    console.log(error)
+  })
+}
+
 export {
   auth,
   db,
@@ -136,4 +176,5 @@ export {
   registerWithEmailAndPassword,
   sendPasswordReset,
   logout,
+  downloadImage,
 }

@@ -6,15 +6,18 @@ import { Wrapper } from '~/components/Popper'
 import Image from '~/components/Image'
 import { CheckCircle } from '../Icons'
 import FollowButton from '../FollowButton'
+import { useAvatarImage } from '~/hooks'
 
 const cx = classNames.bind(styles)
 
 const AccountInfoPopper = ({ account, id, bio = false }) => {
+  const avatarSrc = useAvatarImage(id)
+
   return (
     <Wrapper className={cx('account-info-containter')}>
       <div className={cx('account-info-head')}>
         <Link to={`/@${account.nickname}`} className={cx('avatar')}>
-          <Image src={account.avatar} alt={account.full_name} />
+          <Image src={avatarSrc} alt={account.full_name} />
         </Link>
 
         <FollowButton id={id} />

@@ -10,7 +10,7 @@ import Image from '../Image'
 import { MusicNoteIcon } from '../Icons'
 import { CommentIconSolid, HeartIconSolid, ShareIconSolid } from '../Icons'
 import AccountInfoPopper from '../AccountInfoPopper'
-import { usePlayVideoOnScreen } from '~/hooks'
+import { useAvatarImage, usePlayVideoOnScreen } from '~/hooks'
 import Menu from './Menu'
 import Video from '~/components/Video'
 import ReactIcon from '../ReactIcon'
@@ -21,12 +21,12 @@ const cx = classNames.bind(styles)
 
 const Post = ({ post }) => {
   const [author, setAuthor] = useState({})
-  const [idAuthor, setIdAuthor] = useState(null)
   const [containRef, isVisible] = usePlayVideoOnScreen({
     root: null,
     rootMargin: '0px',
     threshold: 0.7,
   })
+  const avatarSrc = useAvatarImage(post.video_owner.uid)
 
   // Play video when visible
   if (containRef.current) {
@@ -41,7 +41,6 @@ const Post = ({ post }) => {
     const authorQuery = query(collection(db, 'users'), where('nickname', '==', post.video_owner.nickname))
     const unsubcribe = onSnapshot(authorQuery, (authorSnap) => {
       setAuthor(authorSnap.docs[0].data())
-      setIdAuthor(authorSnap.docs[0].id)
     })
 
     return () => unsubcribe()
@@ -51,14 +50,14 @@ const Post = ({ post }) => {
   return (
     <div className={cx('post-container')}>
       <Link to={`/@${author.nickname}`} className={cx('author-avatar')}>
-        <Image src={author.avatar} alt={author.nickname} />
+        <Image src={avatarSrc} alt={author.nickname} />
       </Link>
       <div className={cx('post-body')}>
         <div className={cx('post-info')}>
           <TippyHeadless
             delay={[400, 0]}
             interactive
-            render={() => <AccountInfoPopper account={author} id={idAuthor} bio />}
+            render={() => <AccountInfoPopper account={author} id={post.video_owner.uid} bio />}
           >
             <Link to={`/@${author.nickname}`}>
               <h3 className={cx('author-nickname')}>{author.nickname}</h3>
@@ -75,7 +74,7 @@ const Post = ({ post }) => {
             </Link>
           </h4>
 
-          <FollowButton isFollowed={author.isFollowed} id={idAuthor} className={cx('follow-author')} />
+          <FollowButton isFollowed={author.isFollowed} id={post.video_owner.uid} className={cx('follow-author')} />
         </div>
 
         <div className={cx('post-video')}>

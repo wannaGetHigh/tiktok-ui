@@ -4,11 +4,11 @@ import images from '~/assets/images'
 import styles from './Image.module.scss'
 import classNames from 'classnames'
 
-const Image = forwardRef(({ src, className, fallback: customFallbak = images.noImage, alt }, ref) => {
+const Image = forwardRef(({ src, className, fallback: customFallback = images.noImage, alt }, ref) => {
   const [fallback, setFallback] = useState('')
 
   const handleError = () => {
-    setFallback(customFallbak)
+    setFallback(customFallback)
   }
 
   return (
